@@ -1,0 +1,47 @@
+{
+    "name": "alekciy/yii2-save-autorelations-behavior",
+    "description": "Auto create relations, validate and save automatically related Active Record models.",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "active-record",
+        "active-query",
+        "database",
+        "behavior",
+        "relations",
+        "has-many",
+        "has-one",
+        "auto-relation"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Сундуков Алексей",
+            "email": "public-mail@alekciy.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": ">=2.0.14",
+        "la-haute-societe/yii2-save-relations-behavior": "*"
+    },
+    "require-dev": {
+        "ext-sqlite3" : "*",
+        "phpunit/phpunit": "4.8.36"
+    },
+    "autoload": {
+        "psr-4": {
+            "alekciy\\Yii2SaveAutoRelations\\": "src/"
+        }
+    },
+    "config": {
+        "process-timeout": 1800,
+        "preferred-install": "dist"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
