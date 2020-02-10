@@ -4,13 +4,13 @@ namespace tests\models;
 
 use alekciy\Yii2SaveAutoRelations\Yii2SaveAutoRelationsTrait;
 use alekciy\Yii2SaveAutoRelations\Yii2SaveAutoRelationsBehavior;
-use Yii;
 use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "car".
  *
  * @property int $id
+ * @property Driver[] $drivers
  * @property string|null $name Название
  */
 class Car extends ActiveRecord

@@ -120,31 +120,14 @@ class Yii2SaveAutoRelationsBehavior extends SaveRelationsBehavior
 				->createTable($junctionTableName, [
 					$masterColumnName => $masterClass::getTableSchema()->getColumn($masterPk)->dbType,
 					$slaveColumnName => $slaveClass::getTableSchema()->getColumn($slavePk)->dbType,
+					"PRIMARY KEY ({$masterColumnName}, {$slaveColumnName})",
+					sprintf('CONSTRAINT master_fk FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE',
+						$masterColumnName, $masterClass::tableName(), $masterPk
+					),
+					sprintf('CONSTRAINT slave_fk FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE',
+						$slaveColumnName, $slaveClass::tableName(), $slavePk
+					),
 				])->execute();
-			$db->createCommand()
-				->addPrimaryKey(
-					'id',
-					$junctionTableName,
-					[$masterColumnName, $slaveColumnName]
-				)->execute();
-			$db->createCommand()
-				->addForeignKey(
-					'master_fk',
-					$junctionTableName,
-					$masterColumnName,
-					$masterClass::tableName(),
-					$masterPk,
-					'CASCADE'
-				)->execute();
-			$db->createCommand()
-				->addForeignKey(
-					'slave_fk',
-					$junctionTableName,
-					$slaveColumnName,
-					$slaveClass::tableName(),
-					$slavePk,
-					'CASCADE'
-				)->execute();
 		}
 
 		return [$junctionTableName, $masterColumnName, $slaveColumnName];
